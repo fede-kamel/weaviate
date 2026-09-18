@@ -69,6 +69,7 @@ require (
 	github.com/minio/minio-go/v7 v7.2.1
 	github.com/netresearch/go-cron v0.15.1
 	github.com/nyaruka/phonenumbers v1.2.2
+	github.com/oracle/oci-go-sdk/v65 v65.125.0
 	github.com/parquet-go/parquet-go v0.29.0
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58
 	github.com/pkg/errors v0.9.1
@@ -116,6 +117,8 @@ require (
 require (
 	github.com/google/jsonschema-go v0.4.2 // indirect
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2 // indirect
+	github.com/sony/gobreaker/v2 v2.4.0 // indirect
+	github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78 // indirect
 )
 
 require (

@@ -72,6 +72,7 @@ import (
 	modmodel2vec "github.com/weaviate/weaviate/modules/text2vec-model2vec"
 	modmorph "github.com/weaviate/weaviate/modules/text2vec-morph"
 	modnvidia "github.com/weaviate/weaviate/modules/text2vec-nvidia"
+	modoci "github.com/weaviate/weaviate/modules/text2vec-oci"
 	modollama "github.com/weaviate/weaviate/modules/text2vec-ollama"
 	modopenai "github.com/weaviate/weaviate/modules/text2vec-openai"
 	modvoyageai "github.com/weaviate/weaviate/modules/text2vec-voyageai"
@@ -377,6 +378,17 @@ func (d *Compose) WithText2VecAWS(accessKey, secretKey, sessionToken string) *Co
 	d.weaviateEnvs["AWS_SECRET_KEY"] = secretKey
 	d.weaviateEnvs["AWS_SESSION_TOKEN"] = sessionToken
 	d.enableModules = append(d.enableModules, modaws.Name)
+	return d
+}
+
+func (d *Compose) WithText2VecOCI(tenancyOCID, userOCID, fingerprint, privateKeyPEM, compartmentID, region string) *Compose {
+	d.weaviateEnvs["OCI_TENANCY_OCID"] = tenancyOCID
+	d.weaviateEnvs["OCI_USER_OCID"] = userOCID
+	d.weaviateEnvs["OCI_FINGERPRINT"] = fingerprint
+	d.weaviateEnvs["OCI_PRIVATE_KEY"] = privateKeyPEM
+	d.weaviateEnvs["OCI_COMPARTMENT_ID"] = compartmentID
+	d.weaviateEnvs["OCI_REGION"] = region
+	d.enableModules = append(d.enableModules, modoci.Name)
 	return d
 }
 

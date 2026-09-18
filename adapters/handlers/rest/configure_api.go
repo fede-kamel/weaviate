@@ -149,6 +149,7 @@ import (
 	modt2vmodel2vec "github.com/weaviate/weaviate/modules/text2vec-model2vec"
 	modmorph "github.com/weaviate/weaviate/modules/text2vec-morph"
 	modnvidia "github.com/weaviate/weaviate/modules/text2vec-nvidia"
+	modtext2vecoci "github.com/weaviate/weaviate/modules/text2vec-oci"
 	modtext2vecoctoai "github.com/weaviate/weaviate/modules/text2vec-octoai"
 	modollama "github.com/weaviate/weaviate/modules/text2vec-ollama"
 	modopenai "github.com/weaviate/weaviate/modules/text2vec-openai"
@@ -1879,6 +1880,7 @@ func registerModules(appState *state.State) error {
 	// Default modules
 	defaultVectorizers := []string{
 		modtext2vecaws.Name,
+		modtext2vecoci.Name,
 		modmulti2veccohere.Name,
 		modcohere.Name,
 		moddatabricks.Name,
@@ -2367,6 +2369,14 @@ func registerModules(appState *state.State) error {
 		appState.Logger.
 			WithField("action", "startup").
 			WithField("module", modtext2vecaws.Name).
+			Debug("enabled module")
+	}
+
+	if _, ok := enabledModules[modtext2vecoci.Name]; ok {
+		appState.Modules.Register(modtext2vecoci.New())
+		appState.Logger.
+			WithField("action", "startup").
+			WithField("module", modtext2vecoci.Name).
 			Debug("enabled module")
 	}
 
